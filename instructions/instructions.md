@@ -165,4 +165,43 @@ xxx
 
 # Current file structure
 
-xxx
+classified-web-app/
+├── .eslintrc.json
+├── components.json
+├── middleware.ts
+├── next.config.mjs
+├── package.json
+├── postcss.config.mjs
+├── README.md
+├── tailwind.config.ts
+├── tsconfig.json
+├── lib/
+│ └── utils.ts
+├── instructions/
+│ └── instructions.md
+├── components/
+│ ├── SignInButton.tsx
+│ └── ui/
+│ ├── accordion.tsx
+│ ├── avatar.tsx
+│ ├── badge.tsx
+│ ├── button.tsx
+│ ├── card.tsx
+│ ├── drawer.tsx
+│ ├── dropdown-menu.tsx
+│ ├── form.tsx
+│ ├── hover-card.tsx
+│ ├── input.tsx
+│ ├── label.tsx
+│ ├── menubar.tsx
+│ ├── navigation-menu.tsx
+│ ├── scroll-area.tsx
+│ ├── skeleton.tsx
+│ ├── tabs.tsx
+│ ├── textarea.tsx
+│ ├── toggle.tsx
+│ └── tooltip.tsx
+└── app/
+├── globals.css
+├── layout.tsx
+└── page.tsx
