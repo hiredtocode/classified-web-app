@@ -9,7 +9,7 @@ export function Header() {
 		<header className='flex items-center justify-between p-4'>
 			<div className='flex items-center flex-grow'>
 				<Link href='/' className='text-2xl font-bold mr-4'>
-					Classified Platform
+					CP
 				</Link>
 				<div className='flex items-center flex-grow'>
 					<SearchInput />
