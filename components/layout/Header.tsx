@@ -3,6 +3,7 @@ import { SignInButton } from '@/components/SignInButton'
 import { UserButton } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import SearchInput from '../SearchInput'
+import { SignedIn, SignedOut } from '@clerk/nextjs'
 
 export function Header() {
 	return (
@@ -24,7 +25,9 @@ export function Header() {
 						</Link>
 					</li>
 					<li>
-						<SignInButton />
+						<SignedOut>
+							<SignInButton />
+						</SignedOut>
 					</li>
 					<li>
 						<UserButton afterSignOutUrl='/' />
