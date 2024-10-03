@@ -35,7 +35,7 @@ export function Footer() {
 					</div>
 				</div>
 				<div className='mt-8 text-center'>
-					<p>&copy; 2023 Classified Platform. All rights reserved.</p>
+					<p>&copy; 2024 Classified Platform. All rights reserved.</p>
 				</div>
 			</div>
 		</footer>
