@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id
+  clerkId       String    @unique
+  name          String
+  email         String    @unique
+  posts         Post[]
+  ratings       Rating[]
+  bookmarks     Bookmark[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Post {
+  id               String    @id @default(cuid())
+  title            String
+  description      String
+  price            Decimal
+  category         Category  @relation(fields: [categoryId], references: [id])
+  categoryId       String
+  images           Image[]
+  status           PostStatus @default(ACTIVE)
+  promoted         Boolean    @default(false)
+  promotionEndDate DateTime?
+  location         String
+  userId           String
+  user             User       @relation(fields: [userId], references: [id])
+  bookmarks        Bookmark[]
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+}
+
+model Category {
+  id    String @id @default(cuid())
+  name  String @unique
+  posts Post[]
+}
+
+model Image {
+  id     String @id @default(cuid())
+  url    String
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model Rating {
+  id                String     @id @default(cuid())
+  transactionId     String
+  raterId           String
+  rateeId           String
+  rater             User       @relation(fields: [raterId], references: [id])
+  ratingType        RatingType
+  overallRating     Decimal
+  itemAccuracy      Decimal?
+  communication     Decimal
+  shippingSpeed     Decimal?
+  paymentPromptness Decimal?
+  adherenceToTerms  Decimal?
+  comments          String?
+  createdAt         DateTime   @default(now())
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  postId    String
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
+enum PostStatus {
+  ACTIVE
+  SOLD
+  DELETED
+}
+
+enum RatingType {
+  BUYER_TO_SELLER
+  SELLER_TO_BUYER
+}
